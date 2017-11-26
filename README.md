@@ -1,0 +1,1 @@
+This a setting file for Hao's emacs
