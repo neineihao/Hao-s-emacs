@@ -45,7 +45,10 @@
 (use-package monokai-theme
   :ensure t)
 
+
+
 ;;Some emacs setting
+(winner-mode 1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (global-linum-mode t)
@@ -78,7 +81,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (monokai-theme smartparens hungry-delete org-bullets which-key try use-package))))
+    (ace-window monokai-theme smartparens hungry-delete org-bullets which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
