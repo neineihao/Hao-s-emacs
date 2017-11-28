@@ -52,16 +52,21 @@
   :ensure t)
 
 ;; package ace-window
-(use-package ace-window
-  :ensure t
-  :init
-  (progn
-    (global-set-key [remap other-window] 'ace-window)
-    (custom-set-faces
-     '(aw-leading-char-face
-       ((t (:inherit ace-jump-face-foreground :height 3.0))))) 
-    ))
+;;(use-package ace-window
+;;  :ensure t
+;;  :init
+;;  (progn
+;;    (global-set-key [remap other-window] 'ace-window)
+;;    (custom-set-faces
+;;     '(aw-leading-char-face
+;;       ((t (:inherit ace-jump-face-foreground :height 3.0))))) 
+;;    ))
 
+;;windows setting
+(global-set-key (kbd "M-S") 'windmove-up)
+(global-set-key (kbd "M-X") 'windmove-down)
+(global-set-key (kbd "M-C") 'windmove-right)
+(global-set-key (kbd "M-Z") 'windmove-left)
 
 ;;Some emacs setting
 (winner-mode 1)
@@ -103,4 +108,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
