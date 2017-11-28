@@ -78,9 +78,10 @@
     (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
     (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
 
-
-
-
+(use-package avy
+  :ensure t
+  :bind ("M-s" . avy-goto-char)
+         ("M-g f" . avy-goto-line))
 ;; package ace-window
 ;;(use-package ace-window
 ;;  :ensure t
