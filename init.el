@@ -40,6 +40,12 @@
   :config (require 'smartparens-config))
 (smartparens-global-mode t)
 
+;;Ido mode
+(setq indo-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+(defalias 'list-buffers 'ibuffer)
 
 ;;Monokai-theme
 (use-package monokai-theme
