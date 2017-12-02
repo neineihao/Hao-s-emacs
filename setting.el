@@ -1,7 +1,6 @@
-
 (defun open-my-init-file()
   (interactive)
-  (find-file "~/.emacs.d/init.el"))
+  (find-file "~/.emacs.d/setting.org"))
 (global-set-key (kbd "<f3>") 'open-my-init-file)
 
 (global-set-key (kbd "M-S") 'windmove-up)
@@ -49,6 +48,10 @@
   :config (require 'smartparens-config))
 (smartparens-global-mode t)
 
+(use-package company
+  :ensure t
+  :config (add-hook 'after-init-hook 'global-company-mode))
+
 (setq indo-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
@@ -86,8 +89,38 @@
 (use-package avy
   :ensure t
   :bind ("M-s" . avy-goto-char)
-        ("M-g f" . avy-goto-line))
+	("M-g f" . avy-goto-line))
 
-(use-package company
+(windmove-default-keybindings)
+(use-package ace-window
   :ensure t
-  :config (add-hook 'after-init-hook 'global-company-mode))
+  :init
+  (progn
+    (global-set-key [remap other-window] 'ace-window)
+    (custom-set-faces
+     '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground :height 3.0))))) 
+    ))
+
+(use-package ox-reveal
+  :ensure ox-reveal)
+(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+(setq org-reveal-mathjax t)
+(use-package htmlize
+  :ensure t)
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+
+(use-package jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (add-hook 'python-mode-hook 'jedi:ac-setup))
+
+(use-package yasnippet
+  :ensure t
+  :init
+    (yas-global-mode 1))
