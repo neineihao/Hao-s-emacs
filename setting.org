@@ -38,8 +38,8 @@
      (defalias 'list-buffers 'ibuffer)
      (fset 'yes-or-no-p 'y-or-n-p)
      (global-set-key (kbd "<f5>") 'revert-buffer)
+     (global-set-key [f1] 'shell)
    #+END_SRC
-n* Package
 * Package
 ** Try
    #+BEGIN_SRC emacs-lisp
@@ -89,7 +89,12 @@ n* Package
 ** Swiper
    #+BEGIN_SRC emacs-lisp
      (use-package counsel
-       :ensure t)
+       :bind
+       (("M-y" . counsel-yank-pop)
+	:map ivy-minibuffer-map
+	("M-y" . ivy-next-line)))
+
+     (setq save=interprogram-paste-before-kill t)
 
      (use-package swiper
        :ensure t
@@ -103,16 +108,16 @@ n* Package
 	 (global-set-key (kbd "<f6>") 'ivy-resume)
 	 (global-set-key (kbd "M-x") 'counsel-M-x)
 	 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-	 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-	 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-	 (global-set-key (kbd "<f1> l") 'counsel-find-library)
-	 (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-	 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+	 (global-set-key (kbd "<f2> f") 'counsel-describe-function)
+	 (global-set-key (kbd "<f2> v") 'counsel-describe-variable)
+	 (global-set-key (kbd "<f2> l") 'counsel-find-library)
+     ;;    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+     ;;    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 	 (global-set-key (kbd "C-c g") 'counsel-git)
 	 (global-set-key (kbd "C-c j") 'counsel-git-grep)
-	 (global-set-key (kbd "C-c k") 'counsel-ag)
-	 (global-set-key (kbd "C-x l") 'counsel-locate)
-	 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+     ;;    (global-set-key (kbd "C-c k") 'counsel-ag)
+     ;;    (global-set-key (kbd "C-x l") 'counsel-locate)
+     ;;    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 	 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))    
    #+END_SRC
 ** Theme setting (monokai)
@@ -173,4 +178,20 @@ n* Package
        :ensure t
        :init
 	(global-undo-tree-mode))
+   #+END_SRC
+** Misc Package
+   #+BEGIN_SRC emacs-lisp
+     (use-package expand-region
+       :ensure t
+       :config 
+       (global-set-key (kbd "C-=") 'er/expand-region))
+     (use-package iedit
+       :ensure t)
+   #+END_SRC
+** Load if Exist
+   #+BEGIN_SRC emacs-lisp
+     (defun load-if-exists(f)
+       "load the elisp file inly if it exists and is readable"
+       (if (file-readable-p f)
+	   (load-file f)))
    #+END_SRC
