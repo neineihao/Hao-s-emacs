@@ -1,6 +1,6 @@
-#+STARTUP: hidestars
-* This is the setting for init.el
 
+#+TITLE: This is the setting for init.el
+#+STARTUP: hidestars
 
 * Default Setting
 ** Shortcut for init.el
@@ -194,4 +194,20 @@
        "load the elisp file inly if it exists and is readable"
        (if (file-readable-p f)
 	   (load-file f)))
+   #+END_SRC
+** Web Mode
+   #+BEGIN_SRC emacs-lisp
+       (use-package web-mode
+	 :ensure t
+	 :config
+	      (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	      (setq web-mode-engines-alist
+		    '(("django"    . "\\.html\\'")))
+	      (setq web-mode-ac-sources-alist
+		    '(("css" . (ac-source-css-property))
+		      ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+
+     (setq web-mode-enable-auto-closing t)
+     (setq web-mode-enable-auto-quoting t)) ; this fixes the quote problem I mentioned
+
    #+END_SRC

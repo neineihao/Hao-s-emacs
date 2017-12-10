@@ -1,0 +1,37 @@
+#+STARTUP: hidestars showall
+#+TITLE: This is the file for capture mode
+* Keybindings
+  #+BEGIN_SRC emacs-lisp
+    (global-set-key (kbd "C-c c")
+	   'org-capture)
+  #+END_SRC
+
+* Templates Setting
+  #+BEGIN_SRC emacs-lisp
+    (setq org-capture-templates
+	  '( ("t" "To Do Item" entry (file+headline "~/Dropbox/org/Todo.org" "To Do Items")
+	      "* TODO %?\nDeadline:%^T" :prepend t)
+
+	     ("n" "Note" entry (file+headline "~/Dropbox/org/notes.org" "Notes")
+	      "* Note %?\n%T")
+
+	     ))
+  #+END_SRC
+
+* Set the agentda fils
+  #+BEGIN_SRC emacs-lisp
+    (setq org-agenda-files (list "~/Dropbox/org/Todo.org"))
+    (define-key global-map "\C-cl" 'org-store-link)
+    (define-key global-map "\C-ca" 'org-agenda)
+    (setq org-log-done t)
+    (add-hook 'org-mode-hook 'org-bullets-mode)
+
+    (setq org-agenda-custom-commands
+	  '(("h" "Daily habits"
+	     ((agenda ""))
+	     ((org-agenda-show-log t)
+	      (org-agenda-ndays 7)
+	      (org-agenda-log-mode-items '(state))
+	      (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":DAILY:"))))
+	    ))
+  #+END_SRC

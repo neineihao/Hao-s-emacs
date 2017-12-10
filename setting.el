@@ -58,7 +58,12 @@
 (ido-mode 1)
 
 (use-package counsel
-  :ensure t)
+  :bind
+  (("M-y" . counsel-yank-pop)
+   :map ivy-minibuffer-map
+   ("M-y" . ivy-next-line)))
+
+(setq save=interprogram-paste-before-kill t)
 
 (use-package swiper
   :ensure t
@@ -137,3 +142,21 @@
   (global-set-key (kbd "C-=") 'er/expand-region))
 (use-package iedit
   :ensure t)
+
+(defun load-if-exists(f)
+  "load the elisp file inly if it exists and is readable"
+  (if (file-readable-p f)
+      (load-file f)))
+
+(use-package web-mode
+    :ensure t
+    :config
+	 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	 (setq web-mode-engines-alist
+	       '(("django"    . "\\.html\\'")))
+	 (setq web-mode-ac-sources-alist
+	       '(("css" . (ac-source-css-property))
+		 ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+
+(setq web-mode-enable-auto-closing t)
+(setq web-mode-enable-auto-quoting t)) ; this fixes the quote problem I mentioned
