@@ -1,5 +1,5 @@
 #+STARTUP: hidestars showall
-#+TITLE: This is the file for capture mode
+#+TITLE: Config for Capture Mode
 * Keybindings
   #+BEGIN_SRC emacs-lisp
     (global-set-key (kbd "C-c c")
@@ -10,17 +10,30 @@
   #+BEGIN_SRC emacs-lisp
     (setq org-capture-templates
 	  '( ("t" "To Do Item" entry (file+headline "~/Dropbox/org/Todo.org" "To Do Items")
-	      "* TODO %?\nDeadline:%^T" :prepend t)
+	      "* TODO %?\nDEADLINE:%^T \n\n" :prepend t)
 
 	     ("n" "Note" entry (file+headline "~/Dropbox/org/notes.org" "Notes")
-	      "* Note %?\n%T")
+	      "* Note: %?\n%T\n\n" :prepend t)
 
-	     ))
+	     ("a" "Appointment" entry (file  "~/Dropbox/org/gcal.org")
+	      "* Appointment: %?\n  %^T\n\n")
+
+	     ("i" "Idea" entry (file+headline "~/Dropbox/org/notes.org" "Ideas")
+	      "* Idea: %?\n  :PROPERTIES:\n\n  :END:\n" :prepend t)
+
+	     ("k" "Knowledge" entry (file+headline "~/Dropbox/org/notes.org" "Knowledges")
+	      "* Knowledge: %?\n  :PROPERTIES:\n\n  :END:\n" :prepend t)
+
+	      ("l" "Learn Course" entry (file+headline "~/Dropbox/org/course.org" "Course")
+	      "* Course : %?\n  :PROPERTIES:\n\n  :END:\n" :prepend t)
+
+
+	      ))
   #+END_SRC
 
-* Set the agentda fils
+* Set the Agentda Files
   #+BEGIN_SRC emacs-lisp
-    (setq org-agenda-files (list "~/Dropbox/org/Todo.org"))
+    (setq org-agenda-files (list "~/Dropbox/org/Todo.org" "~/Dropbox/org/gcal.org" "~/Dropbox/org/notes.org"))
     (define-key global-map "\C-cl" 'org-store-link)
     (define-key global-map "\C-ca" 'org-agenda)
     (setq org-log-done t)
@@ -33,5 +46,27 @@
 	      (org-agenda-ndays 7)
 	      (org-agenda-log-mode-items '(state))
 	      (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":DAILY:"))))
+
+	    ("c" "Simple agenda view"
+	     ((agenda "")
+	      (alltodo "")))
 	    ))
+
   #+END_SRC
+
+* Keybindings
+  #+BEGIN_SRC emacs-lisp
+    (global-set-key (kbd "\e\et")
+		    (lambda () (interactive) (find-file "~/Dropbox/org/Todo.org")))
+
+    (global-set-key (kbd "\e\ea")
+		    (lambda () (interactive) (find-file "~/Dropbox/org/gcal.org")))
+
+    (global-set-key (kbd "\e\en")
+		    (lambda () (interactive) (find-file "~/Dropbox/org/notes.org")))
+
+    (global-set-key (kbd "\e\ec")
+		    (lambda () (interactive) (find-file "~/.emacs.d/capture.org")))
+  #+END_SRC
+
+

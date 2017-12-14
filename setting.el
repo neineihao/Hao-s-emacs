@@ -13,6 +13,9 @@
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
+(setq user-full-name "Chen Pei Hao"
+      user-mail-address "s894117@gmail.com")
+
 (winner-mode 1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -24,8 +27,16 @@
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 (defalias 'list-buffers 'ibuffer)
 (fset 'yes-or-no-p 'y-or-n-p)
-(global-set-key (kbd "<f5>") 'revert-buffer)
+;;(global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key [f1] 'shell)
+;;(setq make-backup-files t)
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+(defun save-all () (interactive) (save-some-buffers t))
+(global-set-key (kbd "<f5>") 'save-all)
 
 (use-package try
    :ensure t)
@@ -52,6 +63,39 @@
 (use-package company
   :ensure t
   :config (add-hook 'after-init-hook 'global-company-mode))
+
+(require 'company)
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; Don't enable company-mode in below major modes, OPTIONAL
+(setq company-global-modes '(not eshell-mode comint-mode erc-mode rcirc-mode))
+
+;; "text-mode" is a major mode for editing files of text in a human language"
+;; most major modes for non-programmers inherit from text-mode
+(defun text-mode-hook-setup ()
+  ;; make `company-backends' local is critcal
+  ;; or else, you will have completion in every major mode, that's very annoying!
+  (make-local-variable 'company-backends)
+
+  ;; company-ispell is the plugin to complete words
+  (add-to-list 'company-backends 'company-ispell)
+
+  ;; OPTIONAL, if `company-ispell-dictionary' is nil, `ispell-complete-word-dict' is used
+  ;;  but I prefer hard code the dictionary path. That's more portable.
+  (setq company-ispell-dictionary (file-truename "~/.emacs.d/misc/english-words.txt")))
+
+(add-hook 'text-mode-hook 'text-mode-hook-setup)
+
+(defun toggle-company-ispell ()
+  (interactive)
+  (cond
+   ((memq 'company-ispell company-backends)
+    (setq company-backends (delete 'company-ispell company-backends))
+    (message "company-ispell disabled"))
+   (t
+    (add-to-list 'company-backends 'company-ispell)
+    (message "company-ispell enabled!"))))
 
 (setq indo-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -160,3 +204,24 @@
 
 (setq web-mode-enable-auto-closing t)
 (setq web-mode-enable-auto-quoting t)) ; this fixes the quote problem I mentioned
+
+(setq package-check-signature nil)
+
+
+(use-package org-gcal
+  :ensure t
+  :config
+  (setq org-gcal-client-id "986838543909-bq9656toalitssjanibgelrig3laro7o.apps.googleusercontent.com"
+	org-gcal-client-secret "Ly7nbBy0AwE-eNjgdjC1rvt_"
+	org-gcal-file-alist '(("s894117@gmail.com" .  "~/Dropbox/org/gcal.org"))))
+
+(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+
+(use-package nyan-mode
+  :ensure t)
+
+(require 'nyan-mode)
+(setq-default nyan-wavy-trail t)
+(nyan-mode)
+(nyan-start-animation)
