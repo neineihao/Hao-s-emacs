@@ -28,7 +28,7 @@
 (defalias 'list-buffers 'ibuffer)
 (fset 'yes-or-no-p 'y-or-n-p)
 ;;(global-set-key (kbd "<f5>") 'revert-buffer)
-(global-set-key [f1] 'shell)
+;;(global-set-key [f1] 'shell)
 ;;(setq make-backup-files t)
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
@@ -37,6 +37,10 @@
 
 (defun save-all () (interactive) (save-some-buffers t))
 (global-set-key (kbd "<f5>") 'save-all)
+
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+
+(global-visual-line-mode t)
 
 (use-package try
    :ensure t)
@@ -141,17 +145,6 @@
   :bind ("M-s" . avy-goto-char)
 	("M-g f" . avy-goto-line))
 
-(windmove-default-keybindings)
-(use-package ace-window
-  :ensure t
-  :init
-  (progn
-    (global-set-key [remap other-window] 'ace-window)
-    (custom-set-faces
-     '(aw-leading-char-face
-       ((t (:inherit ace-jump-face-foreground :height 3.0))))) 
-    ))
-
 (use-package ox-reveal
   :ensure ox-reveal)
 (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
@@ -225,3 +218,79 @@
 (setq-default nyan-wavy-trail t)
 (nyan-mode)
 (nyan-start-animation)
+
+(use-package better-shell
+    :ensure t
+    :bind (("<f1>" . better-shell-shell)
+	   ("C-;" . better-shell-remote-open)))
+
+;;(package-install 'auctex)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq TeX-save-query nil)
+(use-package exec-path-from-shell
+  :ensure t)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+(use-package neotree
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'load-path "/some/path/neotree")
+    (require 'neotree)
+    ;;(global-set-key [f8] 'neotree-toggle)
+    ))
+
+;;(add-hook 'C++-mode-hook
+;;	  (lambda nil (save-excursion (neotree-show))))
+
+(defun neotree-project-dir-toggle ()
+  "Open NeoTree using the project root, using find-file-in-project,
+or the current buffer directory."
+  (interactive)
+  (let ((project-dir
+	 (ignore-errors
+	   ;;; Pick one: projectile or find-file-in-project
+	   ; (projectile-project-root)
+	   (ffip-project-root)
+	   ))
+	(file-name (buffer-file-name))
+	(neo-smart-open t))
+    (if (and (fboundp 'neo-global--window-exists-p)
+	     (neo-global--window-exists-p))
+	(neotree-hide)
+      (progn
+	(neotree-show)
+	(if project-dir
+	    (neotree-dir project-dir))
+	(if file-name
+	    (neotree-find file-name))))))
+
+(define-key global-map (kbd "<f8>") 'neotree-project-dir-toggle)
+
+;; Run C programs directly from within emacs
+(defun execute-c-program ()
+  (interactive)
+  (defvar foo)
+  (setq foo (concat "g++ " (buffer-name) " && ./a.out" ))
+  (shell-command foo))
+(require 'cc-mode)
+(define-key c-mode-base-map (kbd "<f9>") (lambda () (interactive) (save-all) (execute-c-program)))
+
+(when (featurep 'ns)
+  (defun ns-raise-emacs ()
+    "Raise Emacs."
+    (ns-do-applescript "tell application \"Emacs\" to activate"))
+
+  (defun ns-raise-emacs-with-frame (frame)
+    "Raise Emacs and select the provided frame."
+    (with-selected-frame frame
+      (when (display-graphic-p)
+	(ns-raise-emacs))))
+
+  (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame)
+
+  (when (display-graphic-p)
+    (ns-raise-emacs)))

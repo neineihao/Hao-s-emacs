@@ -24,7 +24,7 @@
 	     ("k" "Knowledge" entry (file+headline "~/Dropbox/org/notes.org" "Knowledges")
 	      "* Knowledge: %?\n  :PROPERTIES:\n\n  :END:\n" :prepend t)
 
-	      ("l" "Learn Course" entry (file+headline "~/Dropbox/org/course.org" "Course")
+	      ("l" "Learn Course" entry (file+headline "~/Dropbox/org/notes.org" "Course")
 	      "* Course : %?\n  :PROPERTIES:\n\n  :END:\n" :prepend t)
 
 

@@ -16,7 +16,12 @@
 
 	 ("k" "Knowledge" entry (file+headline "~/Dropbox/org/notes.org" "Knowledges")
 	  "* Knowledge: %?\n  :PROPERTIES:\n\n  :END:\n" :prepend t)
-	 ))
+
+	  ("l" "Learn Course" entry (file+headline "~/Dropbox/org/notes.org" "Course")
+	  "* Course : %?\n  :PROPERTIES:\n\n  :END:\n" :prepend t)
+
+
+	  ))
 
 (setq org-agenda-files (list "~/Dropbox/org/Todo.org" "~/Dropbox/org/gcal.org" "~/Dropbox/org/notes.org"))
 (define-key global-map "\C-cl" 'org-store-link)
@@ -48,16 +53,3 @@
 
 (global-set-key (kbd "\e\ec")
 		(lambda () (interactive) (find-file "~/.emacs.d/capture.org")))
-
-(defun transform-square-brackets-to-round-ones(string-to-transform)
-  "Transforms [ into ( and ] into ), other chars left unchanged."
-  (concat 
-  (mapcar #'(lambda (c) (if (equal c ?[) ?\( (if (equal c ?]) ?\) c))) string-to-transform))
-  )
-
-(setq org-capture-templates `(
-	("p" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
-	"* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")	
-	("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
-	"* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
-))
