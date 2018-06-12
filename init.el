@@ -31,4 +31,5 @@
  '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
 (org-babel-load-file (expand-file-name "~/.emacs.d/setting.org"))
 (org-babel-load-file (expand-file-name "~/.emacs.d/capture.org"))
+(load-file "~/.emacs.d/misc/wc.el")
 (put 'set-goal-column 'disabled nil)

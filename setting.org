@@ -63,6 +63,15 @@ b** Auto fill
    #+BEGIN_SRC emacs-lisp
      (global-visual-line-mode t)
    #+END_SRC
+** Revert buffer
+   #+BEGIN_SRC emacs-lisp
+     ;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
+     (defun revert-buffer-no-confirm ()
+	 "Revert buffer without confirmation."
+	 (interactive)
+	 (revert-buffer :ignore-auto :noconfirm))
+
+   #+END_SRC
 * Package
 ** Try
    #+BEGIN_SRC emacs-lisp
@@ -378,3 +387,15 @@ b** Auto fill
        (when (display-graphic-p)
 	 (ns-raise-emacs)))
    #+END_SRC
+** Latex setting
+   #+BEGIN_SRC emacs-lisp
+	  (defun pdf-latex ()
+	    (interactive)
+	    (defvar foo)
+	    (setq foo (concat "pdflatex " (buffer-name) ))
+	    (shell-command foo))
+
+     (eval-after-load 'latex 
+     '(define-key LaTeX-mode-map (kbd "<f9>") (lambda () (interactive) (save-all) (pdf-latex) )))
+   #+END_SRC
+

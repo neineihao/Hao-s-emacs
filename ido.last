@@ -1,0 +1,41 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/peihao/Dropbox/" . "Meeting/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/peihao/Downloads/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "giji.md"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/peihao/Dropbox/Note/" (23326 33681 891712 46000) ".#CSS.org" "CSS.org" "Man.org" "Diary.org" "Bash.org" "latex-mode/" "Linux.org" "1805.org" "1806.org" "../" "./")
+
+ ("/Users/peihao/.emacs.d/" (23308 65437 38619 945000) "capture.org" "games/" "setting.org" ".git/" "elpa/" "capture.el" "recentf" "request/" "sample/" "network-security.data" "bookmarks" "README.md" "init.el" ".python-environments/" "auto-save-list/" "recentf~" "tramp" "org-gcal/" "setting.log" "setting.el" "eshell/" ".#setting.org" "ido.last" "snippets/" "misc/" "ac-comphist.dat" "../" "./")
+
+ ("/Users/peihao/" (23244 48960 614727 818000) ".smex-items" ".scep/" ".viminfo" ".bash_history" ".gitconfig" ".inputrc" ".cache/" "Downloads/" ".Xauthority" "clientemacs.scpt" ".bash_profile" "Documents/" ".Trash/" "log" "Dropbox/" "Applications/" "Movies/" ".ssh/" "dictionary/" ".dropbox/" "Public/" "PycharmProjects/" ".mplayer/" ".fasd" ".bash_sessions/" "comic/" ".emacs.d/" ".bash_profile.pysave" ".oracle_jre_usage/" ".lesshst" ".matplotlib/" "Library/" "Desktop/" "kindle2anki/" "iCloud Drive（封存檔）/" "Pictures/" ".local/" ".bash_profile~" "JPLearn/" "Ankieasy/" "clientemacs.app/" ".kindle" ".CFUserTextEncoding" ".DS_Store" ".virtualenvs/" "TempEmacs/" "Music/" ".config/" "../" "./")
+
+ ("/Users/peihao/Downloads/" (23209 61138 452248 499000) "Picture.jpg" "h30_mannual_jp.pdf" "OVERLORD Ⅱ (DMXF)-10[王都動亂序章][GB][720P].mp4" "1. Application guideline_Forms_JP.pdf" "6CUWM0FNOA.txt" "衛宮家今天的飯 (FLsnow)-02[鮭魚蘑菇黃油燒烤][BIG5][720P].mp4" "h30_mannual_jp (1).pdf" "1fe2a6803c0ab28826d570d6daa6d13f.zip" "[FLsnow][Fate_EXTRA_Last_Encore][01][720p][CHT].mp4" "(2)H28年度TA希望届.xls" "【修正版20180202】様式６　学習状況・進路予定報告書.xls" "Introduction to Linear Algebra, 4th edition.PDF" "Twitch.dmg" "[Sakurato.sub][Shinmai Maou no Testament Departures][OVA][GB][720P].mp4" "genact-osx" "nri_company_profile2019.pdf" "H29TAハンドブック原稿完成版.pdf" "eb21e7837fafee0958cab17103614c1b.zip" "d7539656072b3b74d1b0ea5fca2976cf.zip" ".localized" "7b74e3e588edd4b8062f55e7e1a58bbe.zip" ".DS_Store" "Enabling the Things of Internet.pdf" "iClay_171115.pptx" "eBook/" "IMG_1001.MOV" "giji" "7efc47d732a7c47e069eecfb3d24e622.zip" "../" "./")
+
+ ("/Users/peihao/Documents/C/" (22950 21256 0 0) "prog4_17.cpp" "a.out" "prog4_22.cpp" "prog4_19.cpp" "prog4_18.cpp" "chap4/" "../" "./")
+
+ ("/Users/peihao/Dropbox/Meeting/180110/" (23124 45733 482287 494000) "180110.tex" "Figure/" "auto/" ".DS_Store" "../" "./")
+
+ ("/Users/peihao/Dropbox/Meeting/" (23124 40114 593280 248000) "160901/" "161216/" "160930/" "160908/" "171218/" "171023/" "171211/" "170330/" "ps8_hspice_matl.pdf" "170421.tex" "161013/" "Presentation/" "170307/" "Node_distribution/" "170616/" "160821/" "171211.pdf" "shinada 論文.pdf" "sample.tex" "170414/" "160422/" "171127/" "161116/" "sample.pdf" "160804/" "170602/" "171211.tex" "160518/" "170110/" "171204/" "160511/" "161007/" "170511/" "160913/" "170323/" "171030/" "Project/" "161202/" "ELEX_201704/" "170519/" "171211.out" "171016/" "170106/" "170905/" "sample.aux" "170703/" "161223/" "sample.log" "160506/" "171225/" "161021/" "iClay_poster_fianl.pptx" "160420/" "160427/" "170623/" "170223/" "170215/" "170824/" "170428/" "170421/" "sample.ps" "sample.dvi" "170206/" "linux.txt" "161125/" "171211.synctex.gz" "171113/" ".DS_Store" "160601/" "170718/" "hspice/" "170711/" "170113/" "160523/" "170926/" "170919/" "170726/" "171211.aux" "sample_latex/" "170123/" "171211.log" "../" "./")
+
+ ("/Users/peihao/Dropbox/" (23124 20011 215989 904000) "Mendeley/" "iClay.pdf" "就職/" "C/" "mail@osaka.txt" "password.txt" "論文&Book/" ".dropbox.cache/" "MegaDownloaderNoinstall/" "Buttery in IoT.pdf" "mag_node_create/" "wallpaper/" "留學/" "Python test/" "Homework/" "Meeting/" "最弱無敗8.txt" ".dropbox" "Camera Uploads/" "result Data/" "node.png" "Project/" "blog/" "Flight.png" "structure of pynq.pptx" "U＿Presentation/" "螢幕截圖/" "PicTures/" "Machine_Learning/" "Cousera_work/" "org/" "convex optimization/" "vocab.csv" "Python/" "Figure_1.png" "Icon
+" "learngit/" ".DS_Store" "RockNRoll.zip" "Freemind/" "cook.docx" "IMG_1001.MOV" "FoodGuide.pdf" "../" "./")
+
+ ("/Users/peihao/Dropbox/org/" (23124 45285 269900 563000) "job.org" "gcal.org" "AnkiProject.org" ".git/" "README.org" "sample/" "test.org" "Emacs.org" "course.org" "HTML.org" "gcal.org_archive" ".#notes.org" "notes.org_archive" "Todo.pdf" "Todo.org" "notes.org" "auto/" "Instruction.org" ".DS_Store" "git.org" "Reaserch.org" "Todo.tex" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

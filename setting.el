@@ -42,6 +42,12 @@
 
 (global-visual-line-mode t)
 
+;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
+(defun revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
+
 (use-package try
    :ensure t)
 
@@ -294,3 +300,12 @@ or the current buffer directory."
 
   (when (display-graphic-p)
     (ns-raise-emacs)))
+
+(defun pdf-latex ()
+       (interactive)
+       (defvar foo)
+       (setq foo (concat "pdflatex " (buffer-name) ))
+       (shell-command foo))
+
+(eval-after-load 'latex 
+'(define-key LaTeX-mode-map (kbd "<f9>") (lambda () (interactive) (save-all) (pdf-latex) )))
